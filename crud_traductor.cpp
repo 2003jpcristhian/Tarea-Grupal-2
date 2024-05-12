@@ -13,10 +13,40 @@ void Actualizar();
 void Borrar();
 
 main(){
-	Leer();
-	Crear();
-	Actualizar();
-	Borrar();
+   int opcion;
+    do {
+    	cout<<"_______________________________________"<<endl;
+        cout << "Fase I - Administracion de Palabras" << endl;
+        cout << "1. Crear Palabra" << endl;
+        cout << "2. Leer Palabras" << endl;
+        cout << "3. Actualizar Palabra" << endl;
+        cout << "4. Eliminar Palabra" << endl;
+        cout<<"--------------------------------------"<<endl;
+        cout << "Fase II - Traduccion de Codigo C++" << endl;
+        cout << "5. Traducir Codigo" << endl;
+        cout << "6. Salir" << endl;
+        cout<<"_______________________________________"<<endl;
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        switch(opcion) {
+            case 1:
+                Crear();
+                break;
+            case 2:
+                Leer();
+                break;
+            case 3:
+				Actualizar();
+			case 4:
+				Borrar();
+				break;
+			case 5:
+				break;
+            default:
+                cout << "Opcion no valida. Por favor, seleccione una opcion valida." << endl;
+        }
+    } while (opcion != 6);
 	
 	
 	system("pause");
@@ -50,6 +80,7 @@ void Crear(){
 	do{
 		fflush(stdin);
 		Traductor traductor;
+		Leer();
 		cout<<"Ingres palabra en Ingles: ";
 		cin>> traductor.p_ing;
 		cout<< "Ingrese la traduccion de la palabra: ";
@@ -66,6 +97,7 @@ void Actualizar(){
 	FILE* archivo= fopen(nombre_archivo,"r+b");
 	Traductor traductor;
 	int id= 0;
+	Leer();
 	cout<<"Ingrse el ID que desea modificar: ";
 	cin>>id;
 	fseek(archivo,id * sizeof(traductor),SEEK_SET);
@@ -84,6 +116,7 @@ void Borrar(){
 	FILE* archivo_temp= fopen(nombre_archivo_temp, "w+b");
 	Traductor traductor;
 	int id= 0, id_n= 0;
+	Leer();
 	cout<<"Ingrese el Id a eliminar: ";
 	cin>> id;
 	while(fread(&traductor, sizeof(Traductor),1, archivo)){
